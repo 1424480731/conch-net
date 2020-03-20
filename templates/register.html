@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jquery js -->
+    <script src="/static/bootstrap/js/jquery.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="/static/bootstrap/css/signin.css" rel="stylesheet">
+    <script type="text/javascript">
+        $.ajaxSetup({data:{csrfmiddlewaretoken:'{{ csrf_token }}'}})
+    </script>
+
+  </head>
+
+  <body>
+    <div class="container-fluid">
+        <div class="row">
+             <div  style="padding-left: 80px"><img src="/static/images/hailuo.png">
+                 <a href='{% url "login:index" %}' class="glyphicon glyphicon-log-in col-lg-offset-11" aria-hidden="true" style="text-decoration:none;color: #888888 "} ></a>
+             </div>
+        </div>
+
+        <form class="form-horizontal" style="padding-top: 70px" action="{% url 'register:sign_in' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3 class="col-lg-offset-5" style="padding-left: 30px">欢迎注册海螺租房</h3>
+          <div class="form-group" style="padding-top: 20px">
+            <label for="username" class="col-sm-2 control-label col-lg-offset-3">用户名</label>
+              <div class="user">
+
+              </div>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="username" name="username"  placeholder="必须填写">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label for="password" class="col-sm-2 control-label col-lg-offset-3">密码</label>
+            <div class="col-sm-2">
+              <input type="password" class="form-control" id="password" name="password" placeholder="必须填写">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label for="phone" class="col-sm-2 control-label col-lg-offset-3">手机号码</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="phone" name="phone" placeholder="必须填写">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label for="birthday" class="col-sm-2 control-label col-lg-offset-3">生日</label>
+            <div class="col-sm-2">
+              <input type="date" class="form-control" name="birthday" id="birthday">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label for="id_number" class="col-sm-2 control-label col-lg-offset-3">身份证</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" name="id_number" id="id_number">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label for="habby" class="col-sm-2 control-label col-lg-offset-3">爱好</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" name="habby" id="habby">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label for="real_name" class="col-sm-2 control-label col-lg-offset-3">真实名字</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" name="real_name"  id="real_name">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label for="email" class="col-sm-2 control-label col-lg-offset-3">邮箱</label>
+            <div class="col-sm-2">
+              <input type="email" class="form-control" name="email" id="email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="photo" class="col-sm-2 control-label col-lg-offset-3">个人图像</label>
+            <div class="col-sm-2">
+                <input type="file" class="form-control" name="photo" id="photo">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-5 col-sm-2">
+              <button type="submit" class="btn btn-lg btn-primary btn-block" id="sign" disabled="disabled">注册</button>
+            </div>
+          </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+
+
+        $.verify_username = function(username){
+              $.ajax({
+                        url:'{% url 'register:verify_user_exist' %}',
+                        type:'POST',
+                        data:{'username':username},
+                        success:function (msg) {
+                            console.log(msg)
+                            if(msg.data==1){
+                                $('#username').val('')
+                                $('.user').html('<span style="padding-left: 20px;color:red">该用户已经注册,请重新输入</span>')
+                                $('#sign').attr('disabled',"disabled")
+                                return 1
+                            }else{
+                                $('.user').html('')
+                                return 0
+                            }
+                        }
+                    })
+        }
+
+        $(document).ready(function(){
+
+            $('#username').on('blur',function () {
+
+                var username = $(this).val()
+                var reg=  /^[a-zA-Z][a-zA-Z0-9_]{4,15}$/
+                var pd = reg.test(username)
+                if(!pd){
+                    $(this).val('')
+                    $(this).attr('placeholder','请重新输入，字母开头，5到15位')
+                    $('#sign').attr('disabled',"disabled")
+                }else{
+                    $.verify_username(username)
+                    $.sign_btn()
+                }
+
+            })
+            $('#password').on('blur',function () {
+
+                var password = $(this).val()
+                console.log(password)
+                var reg=  /[a-zA-Z0-9_]{8,15}$/
+                var pd = reg.test(password)
+                if(!pd){
+                    $(this).val('')
+                    $(this).attr('placeholder','请重新输入密码低于8位')
+                    $('#sign').attr('disabled',"disabled")
+                }else{
+                    $.sign_btn()
+                }
+
+            })
+            $('#phone').on('blur',function () {
+
+                var phone = $(this).val()
+                var reg= /^[1][3,4,5,7,8][0-9]{9}$/
+                var pd = reg.test(phone)
+                if(!pd){
+                    $(this).val('')
+                    $(this).attr('placeholder','手机号格式错误，请重新输入')
+                    $('#sign').attr('disabled',"disabled")
+                }else{
+                    console.log('phone')
+                    $.sign_btn()
+                }
+
+            })
+
+
+            $.sign_btn = function(){
+                console.log('fdhajkhjdakfjda')
+                var arr = $('form').serialize()
+                var arr_obj= getObj(arr)
+                if(arr_obj.username&&arr_obj.password&&arr_obj.phone){
+                    if(!$.verify_username(arr_obj.username)){
+                        $('#sign').removeAttr('disabled')
+                    }
+
+                }
+            }
+
+            function getObj(str) {
+                let arr = str.split('&');
+                let obj = {};
+                for(var i=0;i<arr.length;i++){
+                    var obj_l = arr[i].split('=')
+                    obj[obj_l[0]]=obj_l[1]
+                }
+                return obj
+            }
+        })
+    </script>
+  </body>
+</html>

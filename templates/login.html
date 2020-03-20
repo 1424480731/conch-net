@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jquery js -->
+    <script src="/static/bootstrap/js/jquery.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="/static/bootstrap/css/signin.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      <form class="form-signin" action = '{% url "login:login" %}' method="post" >
+          {% csrf_token %}
+          <img src="/static/images/hailuo.png" alt="#" class="img-rounded img-responsive center-block">
+        <h2 class="form-signin-heading"></h2>
+        <label for="inputEmail" class="control-label">用户名</label>
+          {% if msg %}
+              <input type="text" id="inputEmail" class="form-control" placeholder='{{ msg }}' name = "username" required autofocus>
+          {% else %}
+                  <input type="text" id="inputEmail" class="form-control" placeholder="username" name = "username" required autofocus >
+          {% endif %}
+        <label for="inputPassword" class="control-label" name = "password">密码</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name = "password" required>
+        <div class="row">
+                <div>
+                    <a href="{% url 'register:register' %}" style="padding-right: 190px;padding-left: 30px">注册</a>
+                    <button class="btn btn-sm " type="submit">登录</button>
+                </div>
+          </div>
+      </form>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>

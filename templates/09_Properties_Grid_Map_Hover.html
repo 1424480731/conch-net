@@ -1,0 +1,615 @@
+﻿<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>海螺租房</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/assets/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/assets/css/responsive.css">
+
+    <style type="text/css">
+        .ul{
+
+        }
+        .li{
+            float: left;
+            list-style: none;
+            margin-left: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+
+    <div class="wrapper alternative-hp" id="wrapper">
+
+        <header>
+            <div class="top-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="btn-group col-lg-1">
+                           <button class="btn btn-default dropdown-toggle text-muted" style="background-color: transparent;border-style: none;font-size: small;box-shadow: none; padding-top: 15px" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              全国</span>
+                           </button>
+                           <ul class="dropdown-menu" id="btn_m_1" aria-labelledby="dropdownMenu1" style="height:300px;overflow:scroll;background-color: transparent; "></ul>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+
+                            <address class="contact-num">
+                                <span><i class="fa fa-phone" style="padding-top: 20px"></i> +86 13653803657</span>
+                            </address>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <a href="{% url 'mision:home' %}" title="" style="padding-left: 70px">
+                                <img src="/static/images/hailuo.png"  alt="">
+                            </a>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-5">
+                            <div class="log-details">
+                                {% if user %}
+                                    <span class="login-form" ><a href="{% url 'login:out' %}" style="padding-top: 20px"><i class="la la-user" style="padding-top: 20px" id="log_out"></i><span><b style="padding-top: 20px">{{ user}}</b></span></a></span>
+                                {% else %}
+                                    <span class="login-form"><i class="la la-user" style="padding-top: 20px"></i><b  style="padding-top: 20px" >{{ login_msg }}</b> <b  style="padding-top: 20px">登录</b>/<b style="padding-top: 20px">注册</b></span>
+                                {% endif %}
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div><!--bottom-header end-->
+        </header><!--header end-->
+
+        <section class="main-banner-sec overlay">
+            <div class="container">
+
+                <div class="banner-details text-center">
+
+                    <h2>寻找属于你的海螺</h2>
+                    <p>静谧夜晚，吹走凋落的回音</p>
+                </div><!--banner-details end-->
+            </div>
+        </section><!--main-banner-sec end-->
+
+       <section class="page-content alternative sec-padding">
+            <div class="container-fluid">
+                <div class="page-content-details">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-12 pl-35">
+                            <div class="listing-sec">
+                                <div class="listing-control-head">
+                                </div><!--listing-control-head end-->
+                                <div class="listing-items">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="horizental-post" role="tabpanel" aria-labelledby="horizental-tab">
+                                            <div class="sales-items horizental-view" id="list_page">
+                                                {% for fy in fy_list %}
+                                                <div class="sale-item">
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                                            <div class="item-img">
+                                                                <div class="over_lay"></div>
+                                                                <a href="{% url 'mision:view_fy' id=fy.id%}" title="" class="ext-link">
+                                                                    <img src="/static/bootstrap/assets/images/resources/img4.jpg" alt="">
+                                                                </a>
+                                                                <span class="item-status">For Sale</span>
+                                                                <a href="{% url 'mision:view_fy' id=fy.id%}" title="" class="view-btn">View</a>
+                                                                <div class="figcaption">
+                                                                    <ul>
+                                                                        <li><i class="fa fa-star"></i></li>
+                                                                        <li><i class="fa fa-star"></i></li>
+                                                                        <li><i class="fa fa-star"></i></li>
+                                                                        <li><i class="fa fa-star"></i></li>
+                                                                        <li><i class="fa fa-star"></i></li>
+                                                                    </ul>
+                                                                    <a href="#" title="" class="add-to-cart"><i class="fa fa-heart"></i></a>
+                                                                </div>
+                                                            </div><!--item-img end-->
+                                                        </div>
+                                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                                            <div class="item-info">
+                                                                <h3><a href="{% url 'mision:view_fy' id=fy.id%}" title="">{{ fy.data.title }}</a></h3>
+                                                                <span>{{ fy.data.address }}</span>
+                                                                {% if fy.data.view_box %}
+                                                                    <p>{{ fy.data.view_box.0 }}</p>
+                                                                {% else %}
+                                                                    <p>联系方式:{{ fy.data.phone }}</p>
+                                                                {% endif %}
+                                                                <div class="specs-info">
+                                                                    <ul>
+                                                                        <li>布局:{{  fy.data.layout }}</li>
+                                                                        <li>平方米:{{ fy.data.area }}</li>
+                                                                    </ul>
+                                                                    <strong class="item-price">￥{{ fy.data.price }}</strong>
+                                                                </div><!--specs-info end-->
+                                                            </div><!--item-info end-->
+                                                        </div>
+                                                    </div>
+                                                </div><!--sale-item end-->
+                                                {% endfor %}
+                                            </div><!--sales-items end-->
+                                        </div>
+                                    </div>
+                                </div><!--listing-items end-->
+                                <div class="mai-pagination">
+                                    <nav aria-label="Page navigation example" id="pagination">
+                                        <ul class="pagination justify-content-center">
+                                            <li class="page-item disabled" id="page_previous" value="1" length="{{page_num|length}}">
+                                              <a class="page-link" href="#" tabindex="-1"><i class="fa fa-angle-left"></i></a>
+                                            </li>
+                                            {% for i in page_num %}
+                                                <li class="page-item" id="page" value ={{ i }}><a class="page-link" href="#">{{ i }}</a></li>
+                                            {% endfor %}
+                                            <li class="page-item disabled" id="page_next" value="2">
+                                              <a class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
+                                            </li>
+                                        </ul>
+                                    </nav><!--Page navigation example -->
+                                </div><!--PAGINATION END-->
+                            </div><!--listing-sec end-->
+                        </div>
+                        <div class="col-xl-3 col-lg-12 order--1">
+                            <div class="sidebar">
+                                <div class="widget widget-search-properties">
+                                    <h3 class="widget-title">搜索 属性</h3>
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-field" id="location">
+                                                    <label>市</label>
+                                                    <div class="btn-group col-lg-4">
+                                                       <button class="btn btn-default dropdown-toggle text-muted" style="background-color: transparent;border-style: none;font-size: small;box-shadow: none; padding-top: 15px" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                          请选择</span>
+                                                       </button>
+                                                       <ul class="dropdown-menu" id="btn_m_2" aria-labelledby="dropdownMenu2" style="height:300px;overflow:scroll;"></ul>
+                                                    </div>
+                                                    <div class="btn-group col-lg-4">
+                                                       <button class="btn btn-default dropdown-toggle text-muted" style="background-color: transparent;border-style: none;font-size: small;box-shadow: none; padding-top: 15px" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                          请选择</span>
+                                                       </button>
+                                                       <ul class="dropdown-menu" id="btn_m_3" aria-labelledby="dropdownMenu1" style="height:300px;overflow:scroll;"></ul>
+                                                    </div>
+                                                    <div class="btn-group col-lg-3">
+                                                       <button class="btn btn-default dropdown-toggle text-muted" style="background-color: transparent;border-style: none;font-size: small;box-shadow: none; padding-top: 15px" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                          请选择</span>
+                                                       </button>
+                                                       <ul class="dropdown-menu" id="btn_m_4" aria-labelledby="dropdownMenu1" style="height:300px;overflow:scroll;"></ul>
+                                                    </div>
+                                                </div><!--form-field end-->
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-field">
+                                                    <label>最低价</label>
+                                                    <div class="handle-counter" >
+                                                        <input type="text" value="50" id="handleCounter1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-field">
+                                                    <label>最高价</label>
+                                                    <div class="handle-counter">
+                                                        <input type="text" value="60" id="handleCounter2">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <button type="button" class="lnk-default" id="form_submit">筛查</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div><!--widget-search-properties end-->
+                            </div><!--sidebar end-->
+                        </div>
+                    </div>
+                </div><!--page-content-details end-->
+            </div>
+        </section><!--page-content end-->
+
+        
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="row">
+                        <div class="col-lg-3 col_1">
+                            <div class="widget widget-about">
+                                <h3 class="widget-title">海螺壳</h3>
+                                <p>© 2019</p>
+                            </div><!--widget-about end-->
+                        </div>
+                        <div class="col-lg-3 col_2">
+                            <div class="widget widget-contact">
+                                <h3 class="widget-title">信息</h3>
+                                <ul class="cont-links">
+                                    <li>
+                                        <i class="la la-phone"></i>
+                                        +86 13653803657
+                                    </li>
+                                    <li>
+                                        <i class="la la-map-marker"></i>
+                                         河南省信阳市光山县新西亚
+                                    </li>
+                                    <li>
+                                        <i class="la la-clock-o"></i>
+                                        10AM - 9PM
+                                    </li>
+                                </ul>
+                            </div><!--widget-contact end-->
+                        </div>
+                        <div class="col-lg-3 col_3">
+                            <div class="widget widget-links">
+                                <h3 class="widget-title">特征</h3>
+                                <ul>
+                                    <li><a href="#" title="">控制面板</a></li>
+                                    <li><a href="#" title="">提交属性</a></li>
+                                    <li><a href="#" title="">提交文档</a></li>
+                                    <li><a href="#" title="">价格</a></li>
+                                </ul>
+                            </div><!--widget-links end-->
+                        </div>
+                        <div class="col-lg-3 col_4">
+                            <ul class="social-links">
+                                <li><a href="#" title=""><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#" title=""><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="#" title=""><i class="fa fa-twitter"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><!--footer-content end-->
+            </div>
+        </footer><!--FOOTER END-->
+
+        <div class="popup">
+            <div class="popup-content">
+                <div class="popup-head">
+                    <ul>
+                        <li class="active" data-tab="login"><a href="#" title="">Log in</a></li>
+                        <li data-tab="register"><a href="#" title="">Register</a></li>
+                    </ul>
+                </div><!--popup-head end-->
+                <div class="popup-form current" id="login">
+                    <form action="{% url 'login:login' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-field">
+                            <input type="text" name="username" placeholder="Name">
+                        </div><!--form-field end-->
+                        <div class="form-field">
+                            <input type="password" name="password" placeholder="Password">
+                        </div><!--form-field end-->
+                        <div class="form-submit">
+                            <button type="submit" class="lnk-default">Log in</button>
+                            <a href="#" title="" class="register-op" data-tab="register"></a>
+                        </div><!--form-submit end-->
+                    </form>
+                </div><!--popup-form end-->
+                <div class="popup-form" id="register">
+                    <form  action="{% url 'register:sign_in' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="user"></div>
+                        <div class="form-field">
+                            <input type="text" name="username" placeholder="username" id="username">
+                        </div><!--form-field end-->
+                        <div class="form-field">
+                            <input type="password" name="password" placeholder="Password" id="password">
+                        </div><!--form-field end-->
+                        <div class="form-field">
+                            <input type="date" name="birthday" placeholder="birthday" id="birthday">
+                        </div><!--form-field end-->
+                        <div class="form-field">
+                            <input type="text" name="id_number" placeholder="id_number" id="id_number">
+                        </div><!--form-field end-->
+                        <div class="form-field">
+                            <input type="text" name="habby" placeholder="habby" id="habby">
+                        </div><!--form-field end-->
+                        <div class="form-field">
+                            <input type="text" name="real_name" placeholder="real_name" id="real_name">
+                        </div><!--form-field end-->
+                        <div class="form-field">
+                            <input type="email" name="email" placeholder="email" id="email">
+                        </div><!--form-field end-->
+                        <div class="form-field">
+                            <input type="text" name="phone" placeholder="phone" id="phone">
+                        </div><!--form-field end-->
+                        <div class="form-field">
+                            <input type="file" name="photo" placeholder="photo" id="photo">
+                        </div><!--form-field end-->
+                        <div class="form-submit">
+                            <button type="submit" class="lnk-default" id="sign" >Register Now</button>
+                        </div><!--form-submit end-->
+                    </form>
+                </div><!--popup-form end-->
+            </div><!--popup-content end-->
+        </div><!--popup end-->
+
+    </div><!--wrapper end-->
+
+    <script src="/static/bootstrap/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/assets/js/popper.min.js"></script>
+    <script src="/static/bootstrap/assets/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/assets/js/custom-select.js"></script>
+    <script src="/static/bootstrap/assets/js/handleCounter.js"></script>
+    <!-- Maps -->
+    <script src="http://ditu.google.cn/maps/api/js"></script>
+    <script src="/static/bootstrap/assets/js/map-cluster/infobox.min.js"></script>
+    <script src="/static/bootstrap/assets/js/map-cluster/markerclusterer.js"></script>
+    <script src="/static/bootstrap/assets/js/map-cluster/maps.js"></script>
+    <!-- Custom Js Script File -->
+    <script src="/static/bootstrap/assets/js/scripts.js"></script>
+    <!-- Custom Js Script File -->
+
+
+    <script type="text/javascript">
+
+
+        function trimstr(msg,start_str,end_str) {
+            var start = msg.search(start_str)+start_str.length
+            var end = msg.search(end_str)
+            var data_ret = msg.substring(start,end)
+            return data_ret
+        }
+
+        function chose_city(){
+              var arealist = [
+                  "阿勒泰","阿里","阿坝州","安康","阿拉善","鞍山","安阳","安顺","安庆","阿克苏","阿拉尔市","北京","本溪","保山市",
+                  "巴中","宝鸡","滨州","巴彦淖尔","包头","白城","白山","保定","毕节","百色","北海","白银","亳州","蚌埠","巴音郭楞",
+                  "博尔塔拉","保亭","白沙","成都","重庆","长春","长沙","朝阳","常州","楚雄","长治","赤峰","郴州","常德","承德",
+                  "沧州","崇左","池州","巢湖","潮州","昌都","滁州","昌吉","澄迈","东莞","大连","东营","丹东","迪庆","德宏","大理",
+                  "达州","德阳","大同","德州","大兴安岭","大庆","定西","儋州","东方","定安","鄂尔多斯","恩施","鄂州","佛山","福州",
+                  "阜新","抚顺","防城港","阜阳","抚州","广州","贵阳","甘孜州","广安","广元","果洛","固原","赣州","贵港","桂林","甘南",
+                  "杭州","哈尔滨","合肥","海口","呼和浩特","湖州","红河州","哈密地区","汉中","菏泽","海西","黄南","海北藏族自治州",
+                  "海东","呼伦贝尔","葫芦岛","怀化","衡阳","黄冈","黄石","黑河","鹤岗","鹤壁","衡水","邯郸","贺州","河池","黄山",
+                  "淮北","淮南","河源","惠州","淮安","海南州","和田地区","陵水","济南","金华","嘉兴","晋中","晋城","济宁","锦州",
+                  "吉安","九江","景德镇","吉林","荆门","荆州","佳木斯","鸡西","焦作","酒泉","金昌","嘉峪关","揭阳","江门","济源",
+                  "昆明","开封","克拉玛依","喀什","可克达拉","兰州","拉萨","聊城","辽阳","临沧市","丽江市","林芝","凉山","乐山",
+                  "泸州","吕梁","临汾","临沂","莱芜","连云港","辽源","娄底","漯河","洛阳","廊坊","六盘水","来宾","柳州","临夏",
+                  "陇南","龙岩","六安","丽水","临高","克孜勒苏","眉山","绵阳","牡丹江","马鞍山","梅州","茂名","南京","宁波","南昌",
+                  "南宁","怒江","那曲","南充市","内江","南阳","宁德","南平","南通","盘锦","普洱","攀枝花","萍乡","平顶山","濮阳",
+                  "平凉","莆田","青岛","衢州","曲靖市","七台河","齐齐哈尔","秦皇岛","黔西南","黔东南","黔南","钦州","庆阳","泉州",
+                  "清远","琼海","潜江","琼中","日照","日喀则","上海","深圳","苏州","沈阳","石家庄","汕头","绍兴","山南地区","遂宁",
+                  "商洛","朔州","石嘴山","上饶","宿迁","松原","四平","邵阳","随州","十堰","绥化","双鸭山","商丘","三门峡","三亚",
+                  "三明","汕尾","韶关","宿州","神农架","石河子","双河","三沙","天津","太原","泰安","台州","吐鲁番地区","铜川","通辽",
+                  "铁岭","通化","唐山","铜仁","天水","铜陵","泰州","塔城","天门市","图木舒克","屯昌","武汉","温州","乌鲁木齐","潍坊",
+                  "威海","无锡","文山州","渭南","吴忠","乌兰察布","乌海","梧州","武威","芜湖","五家渠","五指山","文昌","万宁","西安",
+                  "厦门","西宁","西双版纳","咸阳","忻州","锡林郭勒","兴安","新余","湘西","湘潭","孝感","咸宁","襄阳","许昌","新乡",
+                  "信阳","邢台","宣城","徐州","仙桃市","银川","烟台","玉溪市","伊犁","雅安市","宜宾","榆林","延安","运城","阳泉","玉树",
+                  "营口","宜春","鹰潭","盐城","扬州","延边","永州","益阳","岳阳","宜昌","伊春","云浮","阳江","义乌","玉林市","珠海","郑州",
+                  "镇江","淄博","舟山","昭通市","资阳","自贡","枣庄","中卫","张家界","株洲","周口","驻马店","遵义","张掖","漳州","肇庆",
+                  "湛江","张家口","中山"
+            ]
+            var ah = ''
+            for(var i=0;i<arealist.length;i++){
+                var area_t = arealist[i]
+                ah += '<li><a  class="text-muted" id="li_area" style="font-size: small;cursor:pointer; " value='+area_t+'>'+area_t+'</a></li>'
+            }
+            $('#btn_m_1').html(ah)
+            $('#btn_m_2').html(ah)
+        }
+
+        $(document).ready(function(){
+
+            var loaction = ''
+            chose_city()
+            $('#wrapper').on('click','#page',function () {
+
+                var page = $(this).attr('value')
+                $.ajax({
+                    url:'{% url "mision:page" %}',
+                    type:'GET',
+                    data:{'page':page},
+                    success:function (msg) {
+                        $("#list_page").empty()
+                        $("#list_page").html(msg)
+                        $('#page_previous').attr('value',page)
+                        $('#page_next').attr('value',parseInt(page)+1)
+
+                    }
+
+                })
+
+            })
+            $('#wrapper').on('click','#page_previous',function () {
+
+                var page = $(this).attr('value')
+                $.ajax({
+                    url:'{% url "mision:page" %}',
+                    type:'GET',
+                    data:{'page':page},
+                    success:function (msg) {
+                        $("#list_page").empty()
+                        $("#list_page").html(msg)
+                        if(parseInt(page)>1){
+                            $('#page_previous').attr('value',parseInt(page)-1)
+                            $('#page_next').attr('value',parseInt(page))
+
+                        }
+
+                    }
+
+                })
+
+            })
+            $('#wrapper').on('click','#page_next',function () {
+
+                var page = $(this).attr('value')
+                var length = $('#page_previous').attr('length')
+                console.log(length)
+                $.ajax({
+                    url:'{% url "mision:page" %}',
+                    type:'GET',
+                    data:{'page':page},
+                    success:function (msg) {
+                        $("#list_page").empty()
+                        $("#list_page").html(msg)
+                        if(parseInt(page)<=length) {
+                            $('#page_previous').attr('value', page)
+                            $('#page_next').attr('value', parseInt(page) + 1)
+                        }
+                    }
+                })
+            })
+            $('#wrapper').on('click','#li_area',function () {
+                $('#dropdownMenu3').html('请选择')
+                $('#dropdownMenu4').html('请选择')
+                var value = $(this).attr('value')
+                var ah =''
+                $.ajax({
+                    url:'{% url "mision:location" %}',
+                    type:'GET',
+                    data:{'area':value},
+                    success:function(msg){
+                        console.log(msg)
+                        loaction=msg.data
+                        for(var i=0;i<loaction.length;i++){
+
+                            ah += '<li><a class="text-muted" id="li_district" style="font-size: small;cursor:pointer;" value='+loaction[i].district_box.district+'>'+loaction[i].district_box.district+'</a></li>'
+
+                        }
+                        $('#btn_m_3').html(ah)
+                        $('#dropdownMenu2').html(value)
+                        $('#dropdownMenu2').attr('value',value)
+                    }
+
+                })
+            })
+            $('#wrapper').on('click','#li_district',function () {
+                $('#dropdownMenu4').html('请选择')
+                 var value = $(this).attr('value')
+                 var ah =''
+                 for(var i=0;i<loaction.length;i++){
+                     if(loaction[i].district_box.district==value){
+                         var road_box =loaction[i].district_box.road_box
+                         for(var j=0;j<road_box.length;j++){
+                             ah += '<li><a class="text-muted" id="li_road" style="font-size: small;cursor:pointer;" value='+road_box[j].road+'>'+road_box[j].road+'</a></li>'
+                         }
+                     }
+                 }
+                 $('#btn_m_4').html(ah)
+                 $('#dropdownMenu3').html(value)
+                 $('#dropdownMenu3').attr('value',value)
+
+            })
+            $('#wrapper').on('click','#li_road',function () {
+
+                var value = $(this).attr('value')
+                $('#dropdownMenu4').html(value)
+                $('#dropdownMenu4').attr('value',value)
+            })
+
+
+            $('#wrapper').on('click','#form_submit',function () {
+
+                var area = $('#dropdownMenu2').attr('value')
+                var district = $('#dropdownMenu3').attr('value')
+                var road = $('#dropdownMenu4').attr('value')
+                var handleCounter1 = $('#handleCounter1').val()
+                var handleCounter2 = $('#handleCounter2').val()
+                if(area&&district&&road&&!isNaN(handleCounter1)&&!isNaN(handleCounter2)&&(parseInt(handleCounter2)>parseInt(handleCounter1))){
+                  $.ajax({
+                    url:'{% url "mision:road" %}',
+                    type:'GET',
+                    data:{'cond':road+'/'+handleCounter1+'/'+handleCounter2},
+                    success:function (msg) {
+                        var start_list = '<div class="sales-items horizental-view" id="list_page">'
+                        var end_list = '</div><!--sales-items end-->'
+                        var satrt_page_foot = '<nav aria-label="Page navigation example" id="pagination">'
+                        var end_page_foot = '</nav><!--Page navigation example -->'
+                        $('#list_page').html(trimstr(msg,start_list,end_list))
+                        $('#pagination').html(trimstr(msg,satrt_page_foot,end_page_foot))
+                    }
+                })
+                }
+                else{
+                    alert('筛选需要的必要信息不足')
+                }
+
+            })
+            $('#username').on('click',function () {
+                $('#sign').removeAttr('disabled')
+                var username = $(this).val()
+                var reg=  /^[a-zA-Z][a-zA-Z0-9_]{4,15}$/
+                var pd = reg.test(username)
+                console.log(username,pd)
+                if(!pd){
+                    $(this).val('')
+                    $(this).attr('placeholder','请重新输入，字母开头，5到15位')
+                    $('#sign').attr('disabled',"disabled")
+                }else{
+                    $.verify_username(username)
+                    $.sign_btn()
+                }
+
+            })
+            $('#password').on('click',function () {
+
+                $('#sign').removeAttr('disabled')
+                var password = $(this).val()
+                console.log(password)
+                var reg=  /[a-zA-Z0-9_]{8,15}$/
+                var pd = reg.test(password)
+                if(!pd){
+                    $(this).val('')
+                    $(this).attr('placeholder','请重新输入,密码要高于8位')
+                }
+
+            })
+            $('#phone').on('click',function () {
+
+                $('#sign').removeAttr('disabled')
+                var phone = $(this).val()
+                var reg= /^[1][3,4,5,7,8][0-9]{9}$/
+                var pd = reg.test(phone)
+                if(!pd){
+                    $(this).val('')
+                    $(this).attr('placeholder','手机号格式错误，请重新输入')
+
+                }else{
+                    console.log('phone')
+                    $.sign_btn()
+                }
+
+            })
+            $('#sign').mouseover(function () {
+                console.log('bfjhgfdfhhasdfh')
+                $.sign_btn()
+            })
+
+            $.sign_btn = function(){
+                console.log('fdhajkhjdakfjda')
+                var arr = $('form').serialize()
+                var arr_obj= getObj(arr)
+                if(arr_obj.username&&arr_obj.password&&arr_obj.phone){
+                    if($.verify_username(arr_obj.username)){
+                        $('#sign').attr('disabled',"disabled")
+                        $('.user').html('用户名已注册')
+                    }
+
+                }else{
+                    $('#sign').attr('disabled',"disabled")
+                    $('.user').html('缺少必须的注册信息')
+                }
+            }
+
+            function getObj(str) {
+                let arr = str.split('&');
+                let obj = {};
+                for(var i=0;i<arr.length;i++){
+                    var obj_l = arr[i].split('=')
+                    obj[obj_l[0]]=obj_l[1]
+                }
+                return obj
+            }
+
+        })
+    </script>
+
+</body>
+
+</html>

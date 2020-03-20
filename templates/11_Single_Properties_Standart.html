@@ -1,0 +1,303 @@
+﻿<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <title>海螺租房</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/assets/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/assets/js/lib/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/assets/js/lib/slick/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/assets/css/responsive.css">
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+
+    <div class="wrapper">
+            <div class="wrapper alternative-hp" id="wrapper">
+
+        <header>
+            <div class="top-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="btn-group col-lg-1">
+                           <button class="btn btn-default dropdown-toggle text-muted" style="background-color: transparent;border-style: none;font-size: small;box-shadow: none; padding-top: 15px" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              全国</span>
+                           </button>
+                           <ul class="dropdown-menu" id="btn_m_1" aria-labelledby="dropdownMenu1" style="height:300px;overflow:scroll;"></ul>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+
+                            <address class="contact-num">
+                                <span><i class="fa fa-phone" style="padding-top: 20px"></i> +86 13653803657</span>
+                            </address>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <a href="{% url 'mision:home' %}" title="" style="padding-left: 70px">
+                                <img src="/static/images/hailuo.png"  alt="">
+                            </a>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-5">
+                            <div class="log-details">
+                                {% if user %}
+                                    <span class="login-form" ><a href="{% url 'login:out' %}" style="padding-top: 20px"><i class="la la-user" style="padding-top: 20px" id="log_out"></i><span><b style="padding-top: 20px">{{ user}}</b></span></a></span>
+                                {% else %}
+                                    <span class="login-form"><i class="la la-user" style="padding-top: 20px"></i><b  style="padding-top: 20px" >{{ login_msg }}</b> <b  style="padding-top: 20px">登录</b>/<b style="padding-top: 20px">注册</b></span>
+                                {% endif %}
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div><!--bottom-header end-->
+        </header><!--header end-->
+
+
+        <section class="page-content sec-padding pt-0">
+            <div class="container">
+                <div class="page-content-details">
+                    <div class="sale-item single-details">
+                        <div class="item-info">
+                            <div class="half-left">
+                                <h3>{{ fy.data.title }}</h3>
+                                <div class="specs-info">
+                                    <ul>
+                                        <li>布局:{{ fy.data.layout }}</li>
+                                        <li>面积: {{ fy.data.area }}</li>
+                                    </ul>
+                                </div><!--specs-info end-->
+                            </div>
+                            <div class="half-right">
+                                <strong class="item-price">￥{{ fy.data.price }}</strong>
+                                <span>{{ fy.data.address }}</span>
+                            </div>
+                        </div>
+                        <div class="banner-carousel arrow-display">
+                            <div class="item-img">
+                                <img src="/static/bootstrap/assets/images/resources/single-img.jpg" alt="">
+                            </div>
+                            <div class="item-img">
+                                <img src="/static/bootstrap/assets/images/resources/single-img.jpg" alt="">
+                            </div>
+                            <div class="item-img">
+                                <img src="/static/bootstrap/assets/images/resources/single-img.jpg" alt="">
+                            </div>
+                        </div><!--banner-carousel end-->
+                        <div class="item-more-details">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="single-post">
+                                        <div class="pro-info description-pro">
+                                            <h3>详情介绍</h3>
+                                            <div class="hidden open">
+                                                <p>{{ fy.data.view_box }}</p>
+                                            </div>
+                                        </div><!--pro-info end-->
+                                        <div class="pro-info add-details">
+                                            <h3>Additional Details</h3>
+                                            <ul class="hidden open">
+                                            </ul>
+                                        </div><!--add-details end-->
+                                    </div><!--single end-->        
+                                </div>
+
+                            </div>
+                        </div><!--item-more-details end-->
+                    </div><!--sale-item end-->
+                </div><!--page-content-details end-->
+            </div>
+        </section><!--page-content end-->
+
+        
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="row">
+                        <div class="col-lg-3 col_1">
+                            <div class="widget widget-about">
+                                <h3 class="widget-title">海螺壳</h3>
+                                <p>© 2019</p>
+                            </div><!--widget-about end-->
+                        </div>
+                        <div class="col-lg-3 col_2">
+                            <div class="widget widget-contact">
+                                <h3 class="widget-title">信息</h3>
+                                <ul class="cont-links">
+                                    <li>
+                                        <i class="la la-phone"></i>
+                                        +86 13653803657
+                                    </li>
+                                    <li>
+                                        <i class="la la-map-marker"></i>
+                                         河南省信阳市光山县新西亚
+                                    </li>
+                                    <li>
+                                        <i class="la la-clock-o"></i>
+                                        10AM - 9PM
+                                    </li>
+                                </ul>
+                            </div><!--widget-contact end-->
+                        </div>
+                        <div class="col-lg-3 col_3">
+                            <div class="widget widget-links">
+                                <h3 class="widget-title">特征</h3>
+                                <ul>
+                                    <li><a href="#" title="">控制面板</a></li>
+                                    <li><a href="#" title="">提交属性</a></li>
+                                    <li><a href="#" title="">提交文档</a></li>
+                                    <li><a href="#" title="">价格</a></li>
+                                </ul>
+                            </div><!--widget-links end-->
+                        </div>
+                        <div class="col-lg-3 col_4">
+                            <ul class="social-links">
+                                <li><a href="#" title=""><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#" title=""><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="#" title=""><i class="fa fa-twitter"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><!--footer-content end-->
+            </div>
+        </footer><!--FOOTER END-->
+
+     <div class="popup">
+        <div class="popup-content">
+            <div class="popup-head">
+                <ul>
+                    <li class="active" data-tab="login"><a href="#" title="">Log in</a></li>
+                    <li data-tab="register"><a href="#" title="">Register</a></li>
+                </ul>
+            </div><!--popup-head end-->
+            <div class="popup-form current" id="login">
+                <form action="{% url 'login:login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-field">
+                        <input type="text" name="username" placeholder="Name">
+                    </div><!--form-field end-->
+                    <div class="form-field">
+                        <input type="password" name="password" placeholder="Password">
+                    </div><!--form-field end-->
+                    <div class="form-submit">
+                        <button type="submit" class="lnk-default">Log in</button>
+                        <a href="#" title="" class="register-op" data-tab="register"></a>
+                    </div><!--form-submit end-->
+                </form>
+            </div><!--popup-form end-->
+            <div class="popup-form" id="register">
+                <form  action="{% url 'register:sign_in' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="user"></div>
+                    <div class="form-field">
+                        <input type="text" name="username" placeholder="username" id="username">
+                    </div><!--form-field end-->
+                    <div class="form-field">
+                        <input type="password" name="password" placeholder="Password" id="password">
+                    </div><!--form-field end-->
+                    <div class="form-field">
+                        <input type="date" name="birthday" placeholder="birthday" id="birthday">
+                    </div><!--form-field end-->
+                    <div class="form-field">
+                        <input type="text" name="id_number" placeholder="id_number" id="id_number">
+                    </div><!--form-field end-->
+                    <div class="form-field">
+                        <input type="text" name="habby" placeholder="habby" id="habby">
+                    </div><!--form-field end-->
+                    <div class="form-field">
+                        <input type="text" name="real_name" placeholder="real_name" id="real_name">
+                    </div><!--form-field end-->
+                    <div class="form-field">
+                        <input type="email" name="email" placeholder="email" id="email">
+                    </div><!--form-field end-->
+                    <div class="form-field">
+                        <input type="text" name="phone" placeholder="phone" id="phone">
+                    </div><!--form-field end-->
+                    <div class="form-field">
+                        <input type="file" name="photo" placeholder="photo" id="photo">
+                    </div><!--form-field end-->
+                    <div class="form-submit">
+                        <button type="submit" class="lnk-default" id="sign" >Register Now</button>
+                    </div><!--form-submit end-->
+                </form>
+                </div><!--popup-form end-->
+            </div><!--popup-content end-->
+        </div><!--popup end-->
+            </div>
+    </div><!--wrapper end-->
+
+    <script src="/static/bootstrap/assets/js/popper.min.js"></script>
+    <script src="/static/bootstrap/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="/static/bootstrap/assets/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/assets/js/jquery.validate.min.js"></script>
+    <script src="/static/bootstrap/assets/js/validator.js"></script>
+    <script src="/static/bootstrap/assets/js/lib/slick/slick.js"></script>
+    <script src="/static/bootstrap/assets/js/custom-select.js"></script>
+    <script src="/static/bootstrap/assets/js/html5lightbox.js"></script>
+    <!-- Maps -->
+    <script src="http://ditu.google.cn/maps/api/js"></script>
+    <script src="/static/bootstrap/assets/js/map-cluster/infobox.min.js"></script>
+    <script src="/static/bootstrap/assets/js/map-cluster/markerclusterer.js"></script>
+    <script src="/static/bootstrap/assets/js/map-cluster/map2.js"></script>
+    <!-- Custom Js Script File -->
+    <script src="/static/bootstrap/assets/js/scripts.js"></script>
+    <script type="text/javascript">
+        function chose_city(){
+              var arealist = [
+                  "阿勒泰","阿里","阿坝州","安康","阿拉善","鞍山","安阳","安顺","安庆","阿克苏","阿拉尔市","北京","本溪","保山市",
+                  "巴中","宝鸡","滨州","巴彦淖尔","包头","白城","白山","保定","毕节","百色","北海","白银","亳州","蚌埠","巴音郭楞",
+                  "博尔塔拉","保亭","白沙","成都","重庆","长春","长沙","朝阳","常州","楚雄","长治","赤峰","郴州","常德","承德",
+                  "沧州","崇左","池州","巢湖","潮州","昌都","滁州","昌吉","澄迈","东莞","大连","东营","丹东","迪庆","德宏","大理",
+                  "达州","德阳","大同","德州","大兴安岭","大庆","定西","儋州","东方","定安","鄂尔多斯","恩施","鄂州","佛山","福州",
+                  "阜新","抚顺","防城港","阜阳","抚州","广州","贵阳","甘孜州","广安","广元","果洛","固原","赣州","贵港","桂林","甘南",
+                  "杭州","哈尔滨","合肥","海口","呼和浩特","湖州","红河州","哈密地区","汉中","菏泽","海西","黄南","海北藏族自治州",
+                  "海东","呼伦贝尔","葫芦岛","怀化","衡阳","黄冈","黄石","黑河","鹤岗","鹤壁","衡水","邯郸","贺州","河池","黄山",
+                  "淮北","淮南","河源","惠州","淮安","海南州","和田地区","陵水","济南","金华","嘉兴","晋中","晋城","济宁","锦州",
+                  "吉安","九江","景德镇","吉林","荆门","荆州","佳木斯","鸡西","焦作","酒泉","金昌","嘉峪关","揭阳","江门","济源",
+                  "昆明","开封","克拉玛依","喀什","可克达拉","兰州","拉萨","聊城","辽阳","临沧市","丽江市","林芝","凉山","乐山",
+                  "泸州","吕梁","临汾","临沂","莱芜","连云港","辽源","娄底","漯河","洛阳","廊坊","六盘水","来宾","柳州","临夏",
+                  "陇南","龙岩","六安","丽水","临高","克孜勒苏","眉山","绵阳","牡丹江","马鞍山","梅州","茂名","南京","宁波","南昌",
+                  "南宁","怒江","那曲","南充市","内江","南阳","宁德","南平","南通","盘锦","普洱","攀枝花","萍乡","平顶山","濮阳",
+                  "平凉","莆田","青岛","衢州","曲靖市","七台河","齐齐哈尔","秦皇岛","黔西南","黔东南","黔南","钦州","庆阳","泉州",
+                  "清远","琼海","潜江","琼中","日照","日喀则","上海","深圳","苏州","沈阳","石家庄","汕头","绍兴","山南地区","遂宁",
+                  "商洛","朔州","石嘴山","上饶","宿迁","松原","四平","邵阳","随州","十堰","绥化","双鸭山","商丘","三门峡","三亚",
+                  "三明","汕尾","韶关","宿州","神农架","石河子","双河","三沙","天津","太原","泰安","台州","吐鲁番地区","铜川","通辽",
+                  "铁岭","通化","唐山","铜仁","天水","铜陵","泰州","塔城","天门市","图木舒克","屯昌","武汉","温州","乌鲁木齐","潍坊",
+                  "威海","无锡","文山州","渭南","吴忠","乌兰察布","乌海","梧州","武威","芜湖","五家渠","五指山","文昌","万宁","西安",
+                  "厦门","西宁","西双版纳","咸阳","忻州","锡林郭勒","兴安","新余","湘西","湘潭","孝感","咸宁","襄阳","许昌","新乡",
+                  "信阳","邢台","宣城","徐州","仙桃市","银川","烟台","玉溪市","伊犁","雅安市","宜宾","榆林","延安","运城","阳泉","玉树",
+                  "营口","宜春","鹰潭","盐城","扬州","延边","永州","益阳","岳阳","宜昌","伊春","云浮","阳江","义乌","玉林市","珠海","郑州",
+                  "镇江","淄博","舟山","昭通市","资阳","自贡","枣庄","中卫","张家界","株洲","周口","驻马店","遵义","张掖","漳州","肇庆",
+                  "湛江","张家口","中山"
+            ]
+            var ah = ''
+            for(var i=0;i<arealist.length;i++){
+                var area_t = arealist[i]
+                ah += '<li><a href="#" class="li_area text-muted" style="font-size: small" value='+area_t+'>'+area_t+'</a></li>'
+            }
+            $('#btn_m_1').html(ah)
+
+        }
+        $(document).ready(function () {
+            $('#dropdownMenu1').on('click',function () {
+                chose_city()
+            })
+            $('#btn_m_1').on('click','.li_area',function () {
+                var area = $(this).attr('value')
+                $('#dropdownMenu1').html(area)
+            })
+        })
+
+    </script>
+
+
+</body>
+
+</html>

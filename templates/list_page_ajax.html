@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% for fy in fy_list %}
+        <div class="sale-item">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="item-img">
+                        <div class="over_lay"></div>
+                        <a href="{% url 'mision:view_fy' id=fy.id%}" title="" class="ext-link">
+                            <img src="/static/bootstrap/assets/images/resources/img4.jpg" alt="">
+                        </a>
+                        <span class="item-status">For Sale</span>
+                        <a href="{% url 'mision:view_fy' id=fy.id%}" title="" class="view-btn">View</a>
+                        <div class="figcaption">
+                            <ul>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                            </ul>
+                            <a href="#" title="" class="add-to-cart"><i class="fa fa-heart"></i></a>
+                        </div>
+                    </div><!--item-img end-->
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8">
+                    <div class="item-info">
+                        <h3><a href="{% url 'mision:view_fy' id=fy.id %}" title="">{{ fy.data.title }}</a></h3>
+                        <span>{{ fy.data.address }}</span>
+                        {% if fy.data.view_box %}
+                            <p>{{ fy.data.view_box.0 }}</p>
+                        {% else %}
+                            <p>联系方式:{{ fy.data.phone }}</p>
+                        {% endif %}
+                        <div class="specs-info">
+                            <ul>
+                                <li>布局:{{  fy.data.layout }}</li>
+                                <li>平方米:{{ fy.data.area }}</li>
+                            </ul>
+                            <strong class="item-price">￥{{ fy.data.price }}</strong>
+                        </div><!--specs-info end-->
+                    </div><!--item-info end-->
+                </div>
+            </div>
+        </div><!--sale-item end-->
+    {% endfor %}
+</body>
+</html>
